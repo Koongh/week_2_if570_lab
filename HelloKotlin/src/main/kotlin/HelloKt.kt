@@ -103,9 +103,46 @@ fun main(args: Array<String>){
 
 
     // Exploring default values and compact functions
-    swim()
-    swim("slow")
-    swim(speed = "turtle-like")
-    feedTheFish()
+//    swim()
+//    swim("slow")
+//    swim(speed = "turtle-like")
+//    feedTheFish()
+
+    //  Getting started with filters
+    val decoration = listOf("rock", "pagoda", "plastic plant", "alligator", "flowerpot")
+    val eager = decoration.filter {it[0] == 'p'}
+    println("eager: $eager")
+
+    val filtered = decoration.asSequence().filter {it[0] == 'p'}
+    println("filtered: $filtered")
+
+    val newList = filtered.toList()
+    println("new list: $newList")
+
+    val lazyMap = decoration.asSequence().map{
+        println("access: $it")
+        it
+    }
+
+    println("lazy: $lazyMap")
+    println("----")
+    println("first: ${lazyMap.first()}")
+    println("----")
+    println("all: ${lazyMap.toList()}")
+
+    val lazyMap2 = decoration.asSequence().filter {it[0] == 'p'}.map{
+        println("access: $it")
+        it
+    }
+
+    println("----")
+    println("filtered: ${lazyMap2.toList()}")
+
+    val mysports = listOf("basketball", "fishing", "running")
+    val myplayers = listOf("LeBron James", "Ernest Hemingway", "Usain Bolt")
+    val mycities = listOf("Los Angeles", "Chicago", "Jamaica")
+    val mylist = listOf(mysports, myplayers, mycities)
+    println("----")
+    println("Flat: ${mylist.flatten()}")
 
 }
