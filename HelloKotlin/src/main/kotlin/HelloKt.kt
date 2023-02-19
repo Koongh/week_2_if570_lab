@@ -38,22 +38,74 @@ fun feedTheFish(){
     val day = randomDay()
     val food = fishFood(day)
     println("Today is $day and the fish eat $food")
+
+    // Exploring default values and compact functions
+    println("Change water: ${shouldChnageWater((day))}")
+
 }
 
+fun getDirtySensorReading(): Int{
+    val dirty = Random().nextInt(50);
+    return dirty
+}
+
+fun swim(speed: String = "fast"){
+    println("swimming $speed")
+}
+
+fun isTooHot(temperature: Int) = temperature > 30
+
+fun isDirty(dirty: Int) = dirty > 30
+
+fun isSunday(day: String) = day == "Sunday"
+
+//fun shouldChnageWater(day: String, temperature: Int = 22, dirty: Int = 20): Boolean{
+//    return when{
+//        isTooHot(temperature) -> true
+//        isDirty(dirty) -> true
+//        isSunday(day) -> true
+//        else -> false
+//    }
+//}
+
+fun shouldChnageWater(day: String, temperature: Int = 22, dirty: Int = getDirtySensorReading()): Boolean{
+    return when{
+        isTooHot(temperature) -> true
+        isDirty(dirty) -> true
+        isSunday(day) -> true
+        else -> false
+    }
+}
+
+
+
 fun main(args: Array<String>){
+
+//    //Exploring the main() function
 //    println("Hello, ${args[0]}")
 //
+
+//    //Learning why (almost) everything has a value
 //    // Will assign kotlin.Unit
 //    val isUnit = println("This is an expression")
 //    println(isUnit)
 //
-////    val  temperature = 10
-////    val isHot = if (temperature > 50) true else false
-////    println(isHot)
+//    //    val  temperature = 10
+//    //    val isHot = if (temperature > 50) true else false
+//    //    println(isHot)
 //
 //    val  temperature = 10
 //    val isHot = "The water temperture is ${if (temperature > 50) "to warm" else "OK"}."
 //    println(isHot)
 
+//    //Learning more about functions
+//        feedTheFish()
+
+
+    // Exploring default values and compact functions
+    swim()
+    swim("slow")
+    swim(speed = "turtle-like")
     feedTheFish()
+
 }
